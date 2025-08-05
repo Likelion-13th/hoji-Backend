@@ -1,5 +1,6 @@
 package likelion13th.shop.controller;
 
+import likelion13th.shop.dto.response.AddressResponse;
 import likelion13th.shop.dto.response.UserInfoResponse;
 import likelion13th.shop.dto.response.UserMileageResponse;
 import likelion13th.shop.service.UserAddressService;
@@ -31,6 +32,14 @@ public class UserController {
             @RequestParam Long userId
     ) {
         UserMileageResponse responses = userAddressService.getUserMileage(userId);
+        return ResponseEntity.ok(responses);
+    }
+
+    @GetMapping("/address")
+    public ResponseEntity<AddressResponse> getUserAddress(
+            @RequestParam Long userId
+    ) {
+        AddressResponse responses = userAddressService.getUserAddress(userId);
         return ResponseEntity.ok(responses);
     }
 }
