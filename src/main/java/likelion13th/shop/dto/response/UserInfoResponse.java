@@ -22,7 +22,6 @@ public class UserInfoResponse {
     public static UserInfoResponse from(User user) {
         return UserInfoResponse.builder()
                 .username(user.getUsername())
-                .mileage(user.getMileage())
                 .address(user.getAddress())
                 .zipCode(user.getZipCode())
                 .provider(user.getProvider())

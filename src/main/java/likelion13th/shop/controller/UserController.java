@@ -1,6 +1,7 @@
 package likelion13th.shop.controller;
 
 import likelion13th.shop.dto.response.UserInfoResponse;
+import likelion13th.shop.dto.response.UserMileageResponse;
 import likelion13th.shop.service.UserAddressService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,15 @@ public class UserController {
         @RequestParam Long userId
     ) {
         UserInfoResponse responses = userAddressService.getUserInfo(userId);
+        return ResponseEntity.ok(responses);
+    }
+
+    @GetMapping("/mileage")
+    public ResponseEntity<UserMileageResponse> getUserMileage(
+            //@AuthenticationPrincipal UserDetails userDetails
+            @RequestParam Long userId
+    ) {
+        UserMileageResponse responses = userAddressService.getUserMileage(userId);
         return ResponseEntity.ok(responses);
     }
 }
