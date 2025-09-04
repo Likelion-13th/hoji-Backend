@@ -1,6 +1,6 @@
 package likelion13th.shop.service;
 
-import likelion13th.shop.domain.entity.Item;
+import likelion13th.shop.domain.Item;
 import likelion13th.shop.dto.response.ItemResponse;
 import likelion13th.shop.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;

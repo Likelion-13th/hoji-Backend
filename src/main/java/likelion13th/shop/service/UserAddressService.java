@@ -1,6 +1,5 @@
 package likelion13th.shop.service;
 
-import likelion13th.shop.domain.entity.Address;
 import likelion13th.shop.dto.response.AddressResponse;
 import likelion13th.shop.dto.response.UserInfoResponse;
 import likelion13th.shop.dto.response.UserMileageResponse;

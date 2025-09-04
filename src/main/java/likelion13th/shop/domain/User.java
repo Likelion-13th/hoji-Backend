@@ -1,4 +1,4 @@
-package likelion13th.shop.domain.entity;
+package likelion13th.shop.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

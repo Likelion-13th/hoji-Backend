@@ -1,6 +1,6 @@
 package likelion13th.shop.dto.response;
 
-import likelion13th.shop.domain.entity.User;
+import likelion13th.shop.domain.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
