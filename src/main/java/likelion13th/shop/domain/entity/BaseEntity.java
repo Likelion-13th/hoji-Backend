@@ -1,25 +1,45 @@
-package likelion13th.shop.domain.entity;
+package likelion13th.shop.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.EntityListeners;
-import jakarta.persistence.MappedSuperclass;
-import lombok.Getter;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+import likelion13th.shop.domain.entity.BaseEntity;
+import lombok.*;
 
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
-@MappedSuperclass
-@EntityListeners(AuditingEntityListener.class)
+@Entity
 @Getter
-public abstract class BaseEntity {
+@Table(name = "item")
+@NoArgsConstructor
+@AllArgsConstructor
+public class Item extends BaseEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "item_id")
+    @Setter(AccessLevel.PRIVATE)
+    private Long id;
 
-    @CreationTimestamp
-    @Column(updatable = false) // 수정시 관여 X
-    private LocalDateTime createdAt;
+    @Column(nullable = false)
+    private String itemName;
 
-    @UpdateTimestamp
-    @Column(insertable = false) // 삽입시 관여 X
-    private LocalDateTime updatedAt;
+    @Column(nullable = false)
+    private int price;
+
+    @Column(nullable = false)
+    private String imagePath;
+
+    @Column(nullable = false)
+    private String brand;
+
+    @Column(nullable = false)
+    private boolean isNew= false;
+
+    //Category와 다대다 연관관계 설정
+    @ManyToMany(mappedBy = "items")
+    private List<Category> categories = new ArrayList<>();
+
+
+    /** Order과 일대다 연관관계 설정
+     * -> Item에서 Order의 목록을 볼 일이 없으므로 단방향 처리 **/
 }

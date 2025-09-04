@@ -1,6 +1,6 @@
 package likelion13th.shop.controller;
 
-import io.swagger.v3.oas.annotations.Operation;
+import likelion13th.shop.dto.request.OrderCreateRequest;
 import likelion13th.shop.service.OrderService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +16,7 @@ public class OrderController {
     @PostMapping
     public ApiResponse<?> createOrder(
             @AuthenticationPrincipal CustomUserDetails customUserDetails,
-            @RequestBody likelion13th.shop.DTO.request.OrderCreateRequest request
+            @RequestBody OrderCreateRequest request
     ) {
         likelion13th.shop.DTO.response.OrderResponse newOrder = orderService.createOrder(request, customUserDetails);
         return ApiResponse.onSuccess(SuccessCode.ORDER_CREATE_SUCCESS, newOrder);
