@@ -1,43 +1,45 @@
 package likelion13th.shop.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+import likelion13th.shop.domain.entity.BaseEntity;
+import lombok.*;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Getter
-@AllArgsConstructor
+@Table(name = "item")
 @NoArgsConstructor
-@Builder
-public class Item {
+@AllArgsConstructor
+public class Item extends BaseEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "item_id")
+    @Setter(AccessLevel.PRIVATE)
     private Long id;
 
     @Column(nullable = false)
-    private String name;
+    private String itemName;
 
     @Column(nullable = false)
     private int price;
 
     @Column(nullable = false)
-    private String status;
+    private String imagePath;
 
     @Column(nullable = false)
-    private LocalDateTime updatedDate;
+    private String brand;
 
     @Column(nullable = false)
-    private String imageUrl;
+    private boolean isNew= false;
 
-    @ManyToMany
-    private List<Category> categories = new ArrayList<Category>();
+    //Category와 다대다 연관관계 설정
+    @ManyToMany(mappedBy = "items")
+    private List<Category> categories = new ArrayList<>();
+
+
+    /** Order과 일대다 연관관계 설정
+     * -> Item에서 Order의 목록을 볼 일이 없으므로 단방향 처리 **/
 }
