@@ -1,31 +1,38 @@
-package likelion13th.shop.dto.response;
+package likelion13th.shop.DTO.response;
 
-import likelion13th.shop.domain.entity.Item;
+
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import likelion13th.shop.domain.Item;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@NoArgsConstructor
 public class ItemResponse {
     private Long id;
     private String name;
     private int price;
-    private LocalDateTime updatedDate;
-    private String imageUrl;
+    private String brand;
+    private String imagePath;
+    private boolean isNew;
 
+    @JsonProperty("isNew")
+    public boolean getIsNew() {
+        return isNew;
+    }
+
+    // Item → ItemResponseDto 변환
     public static ItemResponse from(Item item) {
-        return ItemResponse.builder()
-                .id(item.getId())
-                .name(item.getName())
-                .price(item.getPrice())
-                .updatedDate(item.getUpdatedDate())
-                .imageUrl(item.getImageUrl())
-                .build();
+        return new ItemResponse(
+                item.getId(),
+                item.getItemName(),
+                item.getPrice(),
+                item.getBrand(),
+                item.getImagePath(),
+                item.isNew()
+        );
     }
 }

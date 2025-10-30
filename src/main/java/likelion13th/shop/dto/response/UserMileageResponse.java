@@ -1,19 +1,10 @@
-package likelion13th.shop.dto.response;
+package likelion13th.shop.DTO.response;
 
-import likelion13th.shop.domain.entity.User;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 
 @Getter
-@Builder
 @AllArgsConstructor
 public class UserMileageResponse {
-    private Long mileage;
-
-    public static UserMileageResponse from(User user) {
-        return UserMileageResponse.builder()
-                .mileage(user.getMileage())
-                .build();
-    }
+    private int maxMileage;
 }
