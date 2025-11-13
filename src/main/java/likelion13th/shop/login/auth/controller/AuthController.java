@@ -20,7 +20,7 @@ import java.util.Set;
 public class AuthController {
 
     private static final Set<String> ALLOWED_ORIGINS = Set.of(
-            "https://hoji-likelion.netlify.app/",
+            "https://hoji-likelion.netlify.app",
             "http://localhost:3000"
     );
     private static final String DEFAULT_FRONT_ORIGIN = "https://hoji-likelion.netlify.app/";
